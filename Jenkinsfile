@@ -1,18 +1,13 @@
 pipeline {
-    agent { 
-        node {
-            label 'local'
-            customWorkspace 'D:\\7-MLOps\\Practical_6'
-        }
-    }
+    agent any
     
     stages {
-    /*
         stage('Checkout Code') {
-        steps {
-            git branch: 'main', url: 'https://github.com/your-username/iris_project.git'
+            steps {
+                git branch: 'master', url: 'file:///D:/7-MLOPS/Practical_6'
+            }
         }
-    }*/
+
         stage('Show Workspace') {
             steps {
                 bat 'cd'
