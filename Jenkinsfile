@@ -2,6 +2,11 @@ pipeline {
     agent any
     
     stages {
+        stage('Git Commands'){
+            bat 'git config --system --add safe.directory D:/7-MLOps/Practical_6'
+
+        }
+
         stage('Checkout Code') {
             steps {
                 git branch: 'master', url: 'file:///D:/7-MLOps/Practical_6'
