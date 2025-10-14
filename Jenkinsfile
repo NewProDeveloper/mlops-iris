@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'file:///D:/7-MLOPS/Practical_6'
+                git branch: 'master', url: 'file:///D:/7-MLOps/Practical_6'
             }
         }
 
