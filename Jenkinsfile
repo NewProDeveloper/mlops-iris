@@ -3,8 +3,9 @@ pipeline {
     
     stages {
         stage('Git Commands'){
-            bat 'git config --system --add safe.directory D:/7-MLOps/Practical_6'
-
+            steps{
+                bat 'git config --global --add safe.directory D:/7-MLOps/Practical_6'
+            }
         }
 
         stage('Checkout Code') {
