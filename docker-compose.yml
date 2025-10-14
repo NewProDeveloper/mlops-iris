@@ -1,0 +1,32 @@
+services:
+  webapp:
+    build: 
+      context: ./webapp
+    image: webapp
+    container_name: web_container
+    depends_on: 
+      - dbapp
+    ports:
+      - "5000:5000"
+    networks:
+      - iris_net
+    environment:
+      - DB_URL=http://db_container:5001/records
+
+  dbapp:
+    build:
+      context: ./dbapp
+    image: dbapp
+    container_name: db_container
+    ports:
+      - "5001:5001"
+    networks:
+      - iris_net
+    volumes:
+      - mydata:/dbapp/instance
+  
+networks:
+  iris_net:
+
+volumes:
+  mydata:

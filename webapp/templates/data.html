@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Iris Predictions - Records</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="/static/css/styles.css" />
+        <style>
+            .records-container { max-width: 900px; }
+            .records-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+            .records-title { font-size: 1.5rem; font-weight: 700; color: #1f2937; }
+            .nav-actions { display: flex; gap: 10px; }
+            .btn-link { text-decoration: none; background: #111827; color: #fff; padding: 10px 14px; border-radius: 10px; font-weight: 600; transition: transform 0.15s ease, box-shadow 0.2s ease; }
+            .btn-link:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
+            .table-wrapper { overflow-x: auto; border-radius: 16px; border: 1px solid #e5e7eb; background: #ffffff; }
+            table { width: 100%; border-collapse: collapse; }
+            thead { background: #f9fafb; }
+            th, td { padding: 14px 16px; text-align: left; font-size: 0.95rem; color: #1f2937; }
+            th { font-weight: 700; color: #374151; }
+            tbody tr + tr { border-top: 1px solid #f3f4f6; }
+            tbody tr:hover { background: #f9fafb; }
+            .empty { text-align: center; padding: 20px; color: #6b7280; }
+            .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; background: #eef2ff; color: #4f46e5; font-weight: 600; font-size: 0.85rem; text-transform: capitalize; }
+        </style>
+    </head>
+    <body>
+        <div class="container records-container">
+            <div class="records-header">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <img class="flower-image" src="/static/images/iris2.jpeg" alt="Iris" style="width:48px; height:48px;" />
+                    <h1 class="records-title">Iris Prediction Records</h1>
+                </div>
+                <div class="nav-actions">
+                    <a class="btn-link" href="/">New Prediction</a>
+                    <a class="btn-link" href="/records">Refresh</a>
+                </div>
+            </div>
+
+            <div class="table-wrapper">
+                {% if records and records|length > 0 %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Sepal Length (cm)</th>
+                            <th>Sepal Width (cm)</th>
+                            <th>Petal Length (cm)</th>
+                            <th>Petal Width (cm)</th>
+                            <th>Prediction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for r in records %}
+                        <tr>
+                            <td>{{ r.id }}</td>
+                            <td>{{ '%.2f'|format(r.sl) if r.sl is not none else '' }}</td>
+                            <td>{{ '%.2f'|format(r.sw) if r.sw is not none else '' }}</td>
+                            <td>{{ '%.2f'|format(r.pl) if r.pl is not none else '' }}</td>
+                            <td>{{ '%.2f'|format(r.pw) if r.pw is not none else '' }}</td>
+                            <td><span class="badge">{{ r.prediction }}</span></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="empty">No records yet. Make a prediction to get started.</div>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+</html>
+
+
