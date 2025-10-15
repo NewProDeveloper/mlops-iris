@@ -4,7 +4,7 @@ import numpy as np
 import os
 import requests
 from waitress import serve
-
+# Comment 1
 app = Flask(__name__)
 
 DB_URL = "http://db_container:5001/records"
