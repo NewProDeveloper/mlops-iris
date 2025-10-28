@@ -20,13 +20,6 @@ pipeline {
             }
         }
 
-        /*
-        stage('Build Images') {
-            steps {
-                sh 'docker-compose build'
-            }
-        }*/
-
         stage('Run Tests') {
             steps {
                 bat 'docker run --rm webapp pytest || echo "No tests found"'
